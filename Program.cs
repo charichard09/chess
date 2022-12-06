@@ -1,33 +1,25 @@
 using System;
-
+using ChessGame.Model;
 // 
 
 public class Program
 {
   public static void Main()
   {
-    Console.WriteLine("Enter a number: ");
-    string stringUserInputtedNumber = Console.ReadLine();
-    int userInputtedNumber = Convert.ToInt32(stringUserInputtedNumber);
-
-    for (int i = 1; i <= userInputtedNumber; i++)
+    ChessBoard chessBoard = new ChessBoard();
+    Queen queenPiece = new Queen();
+    chessBoard.MovePiece("Queen", 7, 3);
+    for (int i = 0; i < chessBoard.ChessField.GetLength(0); i++) 
     {
-      if (i % 3 == 0 && i % 5 == 0)
+      Console.Write((i + 1) + "| ");
+
+      for (int j = 0; j < chessBoard.ChessField.GetLength(1); j++)
       {
-        Console.WriteLine("ping-pong");
+        Console.Write(chessBoard.ChessField[i, j] + " ");
       }
-      else if (i % 3 == 0)
-      {
-        Console.WriteLine("ping");
-      }
-      else if (i % 5 == 0)
-      {
-        Console.WriteLine("pong");
-      }
-      else
-      {
-        Console.WriteLine(i);
-      }
+      Console.WriteLine();
     }
+  
+    Console.WriteLine(chessBoard.CheckHorizontalLeft(queenPiece));
   }
 }
